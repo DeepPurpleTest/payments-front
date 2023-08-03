@@ -1,0 +1,27 @@
+<div>
+  <form class="example-form" (ngSubmit)="login()">
+    <div style="display: block;">
+      <mat-form-field class="example-form-field">
+        <mat-label>Phone number</mat-label>
+        <input matInput type="text" name="phoneNumber" [(ngModel)]="user.phoneNumber">
+        <button *ngIf="user.phoneNumber" matSuffix mat-icon-button aria-label="Clear" (click)="user.phoneNumber=''">
+          <mat-icon>close</mat-icon>
+        </button>
+      </mat-form-field>
+    </div>
+
+    <div style="display: block;">
+      <mat-form-field class="example-form-field">
+        <mat-label>Password</mat-label>
+        <input matInput type="text" name="password" [(ngModel)]="user.password">
+        <button *ngIf="user.password" matSuffix mat-icon-button aria-label="Clear" (click)="user.password=''">
+          <mat-icon>close</mat-icon>
+        </button>
+      </mat-form-field>
+    </div>
+    <div>
+      <button mat-raised-button color="primary">Submit</button>
+    </div>
+  </form>
+</div>
+
