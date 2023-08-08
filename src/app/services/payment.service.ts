@@ -3,6 +3,7 @@ import {HttpClient, HttpHeaders} from "@angular/common/http";
 import {AuthService} from "./auth.service";
 import {Observable} from "rxjs";
 import {Card} from "../models/card";
+import {Payment} from "../models/payment";
 
 @Injectable()
 export class PaymentService {
@@ -15,5 +16,20 @@ export class PaymentService {
   findPaymentsByCard(card: Card): Observable<any> {
     const headers = new HttpHeaders({Authorization: 'Basic ' + btoa(this.authService.getPhoneNumber() + ':' + this.authService.getPassword())});
     return this.http.post(this.clientPaymentUrl + '_findAll', card,{headers});
+  }
+
+  createTransaction(payment: Payment) {
+    const headers = new HttpHeaders({Authorization: 'Basic ' + btoa(this.authService.getPhoneNumber() + ':' + this.authService.getPassword())});
+    return this.http.post(this.clientPaymentUrl + 'create', payment,{headers});
+  }
+
+  findOne(id: string | null): Observable<any> {
+    let payment = {} as Payment;
+    if (id !== null) {
+      payment.id = parseInt(id, 10);
+    }
+
+    const headers = new HttpHeaders({Authorization: 'Basic ' + btoa(this.authService.getPhoneNumber() + ':' + this.authService.getPassword())});
+    return this.http.post(this.clientPaymentUrl + '_find', payment,{headers});
   }
 }
