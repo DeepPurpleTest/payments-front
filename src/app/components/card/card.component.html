@@ -1,0 +1,9 @@
+<div (click)="toggleCard()">
+  {{ 'Card: ' + card.cardNumber }}
+  {{ 'Balance: ' + card.balance }}
+  {{ 'Status: ' + card.status }}
+</div>
+
+<ng-container *ngIf="showComponent">
+  <app-payments [payments]="payments"></app-payments>
+</ng-container>

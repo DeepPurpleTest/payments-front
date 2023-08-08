@@ -1,7 +1,12 @@
-<p>home works!</p>
 <div *ngIf="user | async as user">
   {{ user.name }}
   {{ user.surname }}
   {{ user.email }}
 </div>
+
+<ng-container *ngIf="cards | async as cards">
+  <div *ngFor="let card of cards">
+    <app-card [card]="card"></app-card>
+  </div>
+</ng-container>
 <button mat-raised-button color="primary" (click)="logout()">Logout</button>

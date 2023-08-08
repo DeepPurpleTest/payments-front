@@ -21,8 +21,7 @@ export class AuthService {
   }
 
   logout() {
-    const headers = new HttpHeaders({Authorization : 'Basic ' + btoa(this.getPhoneNumber() + ':' + this.getPassword())});
-    return this.http.post(this.authUrl + 'logout', {headers});
+    sessionStorage.clear();
   }
 
   saveUserInStorage(user: User) {

@@ -17,6 +17,11 @@ import {RegisterComponent} from './components/register/register.component';
 import {UserService} from "./services/user.service";
 import {AuthService} from "./services/auth.service";
 import {HttpClientModule} from "@angular/common/http";
+import {CardService} from "./services/card.service";
+import { CardComponent } from './components/card/card.component';
+import {PaymentService} from "./services/payment.service";
+import { PaymentsComponent } from './components/payments/payments.component';
+import {MatButtonToggleModule} from "@angular/material/button-toggle";
 
 @NgModule({
   declarations: [
@@ -24,7 +29,9 @@ import {HttpClientModule} from "@angular/common/http";
     HeaderComponent,
     LoginComponent,
     HomeComponent,
-    RegisterComponent
+    RegisterComponent,
+    CardComponent,
+    PaymentsComponent
   ],
   imports: [
     BrowserModule,
@@ -37,11 +44,14 @@ import {HttpClientModule} from "@angular/common/http";
     MatInputModule,
     ReactiveFormsModule,
     BrowserAnimationsModule,
-    FormsModule
+    FormsModule,
+    MatButtonToggleModule
   ],
   providers: [
     UserService,
     AuthService,
+    CardService,
+    PaymentService,
   ],
   bootstrap: [AppComponent]
 })

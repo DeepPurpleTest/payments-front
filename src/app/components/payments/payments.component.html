@@ -1,0 +1,11 @@
+<div *ngIf="payments | async as payments">
+  <ng-container *ngFor="let payment of payments">
+    <div>
+      {{ 'Sender: ' + payment.sender }}
+      {{ 'Receiver: ' + payment.receiver }}
+      {{ 'Amount: ' + payment.amount }}
+      {{ 'Date: ' + payment.date }}
+      {{ 'Balance after transaction: ' + payment.currentCardBalance }}
+    </div>
+  </ng-container>
+</div>
