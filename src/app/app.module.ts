@@ -24,8 +24,8 @@ import { PaymentsComponent } from './components/payments/payments.component';
 import {MatButtonToggleModule} from "@angular/material/button-toggle";
 import { TransactionComponent } from './components/transaction/transaction.component';
 import {MatSelectModule} from "@angular/material/select";
-import { SuccessComponent } from './components/success/success.component';
 import { PaymentComponent } from './components/payment/payment.component';
+import {MatFormFieldModule} from "@angular/material/form-field";
 
 @NgModule({
   declarations: [
@@ -37,7 +37,6 @@ import { PaymentComponent } from './components/payment/payment.component';
     CardComponent,
     PaymentsComponent,
     TransactionComponent,
-    SuccessComponent,
     PaymentComponent
   ],
   imports: [
@@ -53,7 +52,8 @@ import { PaymentComponent } from './components/payment/payment.component';
     BrowserAnimationsModule,
     FormsModule,
     MatButtonToggleModule,
-    MatSelectModule
+    MatSelectModule,
+    MatFormFieldModule
   ],
   providers: [
     UserService,

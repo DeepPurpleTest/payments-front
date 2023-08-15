@@ -18,9 +18,9 @@ export class PaymentService {
     return this.http.post(this.clientPaymentUrl + '_findAll', card,{headers});
   }
 
-  createTransaction(payment: Payment) {
+  createTransaction(inputData: any): Observable<any> {
     const headers = new HttpHeaders({Authorization: 'Basic ' + btoa(this.authService.getPhoneNumber() + ':' + this.authService.getPassword())});
-    return this.http.post(this.clientPaymentUrl + 'create', payment,{headers});
+    return this.http.post(this.clientPaymentUrl + 'create', inputData,{headers});
   }
 
   findOne(id: string | null): Observable<any> {

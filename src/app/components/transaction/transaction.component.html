@@ -1,28 +1,31 @@
 <div>
-  <form class="example-form" (ngSubmit)="createTransaction()">
-    <mat-form-field>
-      <mat-label>Select tour card:</mat-label>
-      <mat-select [(ngModel)]="payment.sender" name="sender">
+  <form class="example-form" [formGroup]="paymentForm" (ngSubmit)="createTransaction()">
+    <mat-form-field class="example-full-width">
+      <mat-label>Select your card:</mat-label>
+      <mat-select formControlName="sender">
         <ng-container *ngIf="cards | async as cards">
-          <mat-option *ngFor="let card of cards" [value]="card.cardNumber">{{ card.cardNumber + ', Balance: ' + card.balance }}</mat-option>
+          <mat-option *ngFor="let card of cards"
+                      [value]="card.cardNumber">
+            {{ card.cardNumber + ', Balance: ' + card.balance }}
+          </mat-option>
         </ng-container>
       </mat-select>
     </mat-form-field>
-    <div style="display: block;">
-      <mat-form-field class="example-form-field">
-        <mat-label>Receiver card number:</mat-label>
-        <input matInput type="text" name="cardNumber" [(ngModel)]="payment.receiver">
-      </mat-form-field>
-    </div>
-    <div style="display: block;">
-      <mat-form-field class="example-form-field">
-        <mat-label>Amount:</mat-label>
-        <input matInput type="text" name="amount" [(ngModel)]="payment.amount">
-      </mat-form-field>
-    </div>
+
+    <mat-form-field class="example-form-field">
+      <mat-label>Receiver card number:</mat-label>
+      <input matInput type="text" formControlName="receiver">
+    </mat-form-field>
+
+    <mat-form-field class="example-form-field">
+      <mat-label>Amount:</mat-label>
+      <input matInput type="number" formControlName="amount">
+    </mat-form-field>
+
     <div>
       <button mat-raised-button color="primary">Submit</button>
     </div>
+
   </form>
 </div>
 

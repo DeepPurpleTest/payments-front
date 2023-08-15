@@ -3,8 +3,8 @@ import {Router} from "@angular/router";
 import {CardService} from "../../services/card.service";
 import {Observable} from "rxjs";
 import {Card} from "../../models/card";
-import {Payment} from "../../models/payment";
 import {PaymentService} from "../../services/payment.service";
+import {FormBuilder, Validators} from "@angular/forms";
 
 @Component({
   selector: 'app-transaction',
@@ -12,23 +12,33 @@ import {PaymentService} from "../../services/payment.service";
   styleUrls: ['./transaction.component.css']
 })
 export class TransactionComponent {
-  payment: Payment = {} as Payment;
   cards: Observable<Card[]>;
+  paymentForm = this.builder.group({
+    sender: ['', Validators.required],
+    receiver: ['', Validators.required],
+    amount: [0, Validators.required]
+  });
 
-  constructor(private router: Router, private cardService: CardService, private paymentService: PaymentService) {
+  constructor(private router: Router, private builder: FormBuilder,
+              private cardService: CardService, private paymentService: PaymentService) {
     this.cards = this.cardService.findCardsByCurrentUser();
   }
 
   createTransaction() {
-    this.paymentService.createTransaction(this.payment).subscribe({
-      next: (data) => {
-        this.router.navigate(['/success/' + this.payment.id]).then(() =>
-          console.log('Navigation to /home completed'));
-      },
-      error: (error) => {
-        console.error('Error:', error.body);
-      }
-    });
+    if (this.paymentForm.valid) {
+      this.paymentService.createTransaction(this.paymentForm.value).subscribe({
+        next: (data) => {
+          const responseId = data.id;
+          this.router.navigate(['/success/' + responseId]).then(() =>
+            console.log('Navigation to /success completed'));
+        },
+        error: (error) => {
+          console.error('Error:', error);
+        }
+      });
+    } else {
+      console.log('Invalid for data');
+    }
   }
 
 }
