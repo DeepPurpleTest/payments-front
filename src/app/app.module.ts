@@ -22,6 +22,10 @@ import { CardComponent } from './components/card/card.component';
 import {PaymentService} from "./services/payment.service";
 import { PaymentsComponent } from './components/payments/payments.component';
 import {MatButtonToggleModule} from "@angular/material/button-toggle";
+import { TransactionComponent } from './components/transaction/transaction.component';
+import {MatSelectModule} from "@angular/material/select";
+import { PaymentComponent } from './components/payment/payment.component';
+import {MatFormFieldModule} from "@angular/material/form-field";
 
 @NgModule({
   declarations: [
@@ -31,7 +35,9 @@ import {MatButtonToggleModule} from "@angular/material/button-toggle";
     HomeComponent,
     RegisterComponent,
     CardComponent,
-    PaymentsComponent
+    PaymentsComponent,
+    TransactionComponent,
+    PaymentComponent
   ],
   imports: [
     BrowserModule,
@@ -45,7 +51,9 @@ import {MatButtonToggleModule} from "@angular/material/button-toggle";
     ReactiveFormsModule,
     BrowserAnimationsModule,
     FormsModule,
-    MatButtonToggleModule
+    MatButtonToggleModule,
+    MatSelectModule,
+    MatFormFieldModule
   ],
   providers: [
     UserService,

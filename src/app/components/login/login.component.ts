@@ -25,7 +25,7 @@ export class LoginComponent {
         console.log(this.user);
       },
       error: (error) => {
-        console.error('Error:', error.body);
+        console.error('Error:', error);
       },
       complete: () => {
         this.authService.saveUserInStorage(this.user);

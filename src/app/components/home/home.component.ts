@@ -31,4 +31,10 @@ export class HomeComponent implements OnInit {
       console.log('Navigation to /home completed')
     );
   }
+
+  transaction() {
+    this.router.navigate(['/transaction']).then(() =>
+      console.log('Navigation to /transaction completed')
+    );
+  }
 }
