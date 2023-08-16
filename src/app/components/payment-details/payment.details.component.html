@@ -1,0 +1,11 @@
+<div>
+  {{ 'Sender: ' + payment.sender }}
+  {{ 'Receiver: ' + payment.receiver }}
+  {{ 'Amount: ' + payment.amount }}
+  {{ 'Date: ' + payment.date }}
+  {{ 'Balance after transaction: ' + payment.currentCardBalance }}
+</div>
+
+<div>
+  <button mat-raised-button color="primary" (click)="openDialog()">Receipt</button>
+</div>

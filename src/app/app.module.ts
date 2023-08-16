@@ -24,8 +24,12 @@ import { PaymentsComponent } from './components/payments/payments.component';
 import {MatButtonToggleModule} from "@angular/material/button-toggle";
 import { TransactionComponent } from './components/transaction/transaction.component';
 import {MatSelectModule} from "@angular/material/select";
-import { PaymentComponent } from './components/payment/payment.component';
+import { PaymentDetailsComponent } from './components/payment-details/payment.details.component';
 import {MatFormFieldModule} from "@angular/material/form-field";
+import {ReceiptService} from "./services/receipt.service";
+import {MatDialogModule} from "@angular/material/dialog";
+import { DialogReceiptComponent } from './components/receipt/dialog-receipt.component';
+import {NgxExtendedPdfViewerModule} from "ngx-extended-pdf-viewer";
 
 @NgModule({
   declarations: [
@@ -37,7 +41,8 @@ import {MatFormFieldModule} from "@angular/material/form-field";
     CardComponent,
     PaymentsComponent,
     TransactionComponent,
-    PaymentComponent
+    PaymentDetailsComponent,
+    DialogReceiptComponent,
   ],
   imports: [
     BrowserModule,
@@ -48,18 +53,23 @@ import {MatFormFieldModule} from "@angular/material/form-field";
     MatButtonModule,
     MatSlideToggleModule,
     MatInputModule,
+    MatDialogModule,
     ReactiveFormsModule,
     BrowserAnimationsModule,
     FormsModule,
     MatButtonToggleModule,
     MatSelectModule,
-    MatFormFieldModule
+    MatFormFieldModule,
+    NgxExtendedPdfViewerModule,
+    //NgxExtendedPdfViewerModule
   ],
   providers: [
     UserService,
     AuthService,
     CardService,
     PaymentService,
+    ReceiptService,
+    DialogReceiptComponent
   ],
   bootstrap: [AppComponent]
 })
