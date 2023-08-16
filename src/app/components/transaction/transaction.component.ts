@@ -13,7 +13,7 @@ import {FormBuilder, Validators} from "@angular/forms";
 })
 export class TransactionComponent {
   cards: Observable<Card[]>;
-  paymentForm = this.builder.group({
+  paymentForm = this.builder.group({ //todo add validators
     sender: ['', Validators.required],
     receiver: ['', Validators.required],
     amount: [0, Validators.required]
