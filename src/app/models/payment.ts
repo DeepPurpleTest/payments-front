@@ -6,5 +6,5 @@ export interface Payment {
   currentCardBalance: number,
   amount: number,
   status: string,
-  date: Date;
+  date: Date
 }

@@ -11,13 +11,13 @@ export class AuthService {
     this.authUrl = 'http://localhost:8080/auth/';
   }
 
-  login(user: User): Observable<any> {
-    return this.http.post(this.authUrl + '_login', user);
+  login(user: User): Observable<User> {
+    return this.http.post<User>(this.authUrl + '_login', user);
   }
 
-  getCurrentUser(): Observable<any> {
+  getCurrentUser(): Observable<User> {
     const headers = new HttpHeaders({Authorization : 'Basic ' + btoa(this.getPhoneNumber() + ':' + this.getPassword())});
-    return this.http.get(this.authUrl + 'account', {headers});
+    return this.http.get<User>(this.authUrl + 'account', {headers});
   }
 
   logout() {
