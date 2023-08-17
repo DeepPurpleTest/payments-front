@@ -1,11 +1,12 @@
 <div>
-  {{ 'Sender: ' + payment.sender }}
-  {{ 'Receiver: ' + payment.receiver }}
-  {{ 'Amount: ' + payment.amount }}
-  {{ 'Date: ' + payment.date }}
-  {{ 'Balance after transaction: ' + payment.currentCardBalance }}
+  Sender: {{ payment.sender }}
+  Receiver: {{ payment.receiver }}
+  Amount: {{ payment.amount }}
+  Date: {{ payment.date | date: 'EEE, MMM d yyyy' }}
+  Balance after transaction: {{ payment.currentCardBalance }}
 </div>
 
 <div>
-  <button mat-raised-button color="primary" (click)="openDialog()">Receipt</button>
+  <button mat-raised-button color="primary" (click)="openDialog()">Print</button>
+  <button mat-raised-button color="primary" (click)="downloadPdf()">Download</button>
 </div>

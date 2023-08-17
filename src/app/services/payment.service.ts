@@ -3,6 +3,7 @@ import {HttpClient, HttpHeaders} from "@angular/common/http";
 import {AuthService} from "./auth.service";
 import {Observable} from "rxjs";
 import {Card} from "../models/card";
+import {Payment} from "../models/payment";
 
 @Injectable()
 export class PaymentService {
@@ -12,17 +13,17 @@ export class PaymentService {
     this.clientPaymentUrl = 'http://localhost:8080/client/payment/';
   }
 
-  findPaymentsByCard(card: Card): Observable<any> {
+  findPaymentsByCard(card: Card): Observable<Payment[]> {
     const headers = new HttpHeaders({Authorization: 'Basic ' + btoa(this.authService.getPhoneNumber() + ':' + this.authService.getPassword())});
-    return this.http.post(this.clientPaymentUrl + '_findAll', card,{headers});
+    return this.http.post<Payment[]>(this.clientPaymentUrl + '_findAll', card,{headers});
   }
 
-  createTransaction(inputData: any): Observable<any> {
+  createTransaction(inputData: any): Observable<Payment> {
     const headers = new HttpHeaders({Authorization: 'Basic ' + btoa(this.authService.getPhoneNumber() + ':' + this.authService.getPassword())});
-    return this.http.post(this.clientPaymentUrl + 'create', inputData,{headers});
+    return this.http.post<Payment>(this.clientPaymentUrl + 'create', inputData,{headers});
   }
 
-  findOne(id: string | null): Observable<any> {
+  findOne(id: string | null): Observable<Payment> {
     let currentId = -1;
     if (id !== null) {
       currentId = parseInt(id, 10);
@@ -31,6 +32,6 @@ export class PaymentService {
     console.log(currentId);
 
     const headers = new HttpHeaders({Authorization: 'Basic ' + btoa(this.authService.getPhoneNumber() + ':' + this.authService.getPassword())});
-    return this.http.get(this.clientPaymentUrl + 'find/' + currentId,{headers});
+    return this.http.get<Payment>(this.clientPaymentUrl + 'find/' + currentId,{headers});
   }
 }
