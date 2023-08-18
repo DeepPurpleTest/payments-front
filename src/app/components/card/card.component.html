@@ -1,9 +1,11 @@
-<div (click)="toggleCard()">
-  {{ 'Card: ' + card.cardNumber }}
-  {{ 'Balance: ' + card.balance }}
-  {{ 'Status: ' + card.status }}
-</div>
+<mat-card class="card-container">
+  <mat-card-header>
+    <mat-card-title>{{ card.cardNumber }}</mat-card-title>
+    <mat-card-subtitle>Balance: {{ card.balance }}</mat-card-subtitle>
+  </mat-card-header>
+  <mat-card-actions>
+    <button mat-button (click)="sendPayments()">Payments</button>
+    <button mat-button>Block</button>
+  </mat-card-actions>
+</mat-card>
 
-<ng-container *ngIf="showComponent">
-  <app-payments [payments]="payments"></app-payments>
-</ng-container>

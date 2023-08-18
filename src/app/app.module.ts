@@ -31,6 +31,8 @@ import {MatDialogModule} from "@angular/material/dialog";
 import { DialogReceiptComponent } from './components/receipt/dialog-receipt.component';
 import {NgxExtendedPdfViewerModule} from "ngx-extended-pdf-viewer";
 import {DateFormatterService} from "./util/dateformatter/date.formatter.service";
+import {MatCardModule} from "@angular/material/card";
+import {MatGridListModule} from "@angular/material/grid-list";
 
 @NgModule({
   declarations: [
@@ -62,6 +64,8 @@ import {DateFormatterService} from "./util/dateformatter/date.formatter.service"
     MatSelectModule,
     MatFormFieldModule,
     NgxExtendedPdfViewerModule,
+    MatCardModule,
+    MatGridListModule,
   ],
   providers: [
     UserService,

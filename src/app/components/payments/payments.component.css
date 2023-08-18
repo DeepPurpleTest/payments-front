@@ -1,0 +1,9 @@
+.payment-container {
+  width: 800px;
+  max-width: 800px;
+  margin: 7px;
+}
+
+.overflow {
+  overflow: auto;
+}

@@ -1,13 +1,32 @@
-<div *ngIf="user | async as user">
-  {{ user.name }}
-  {{ user.surname }}
-  {{ user.email }}
-</div>
+<mat-grid-list cols="2" rowHeight="100px" class="border">
+  <mat-grid-tile [colspan]="2" [rowspan]="1" class="border">
+    <ng-container *ngIf="user | async as user">
+      {{ user.name }}
+      {{ user.surname }}
+      {{ user.email }}
+    </ng-container>
+  </mat-grid-tile>
 
-<ng-container *ngIf="cards | async as cards">
-  <div *ngFor="let card of cards">
-    <app-card [card]="card"></app-card>
-  </div>
-</ng-container>
+  <ng-container *ngIf="cards | async as cards" class="border">
+      <mat-grid-tile [colspan]="1" [rowspan]="cards.length * 2" class="border">
+        <div class="container">
+          <div *ngFor="let card of cards">
+            <app-card (dataEvent)="handleData($event)" [card]="card"></app-card>
+          </div>
+        </div>
+      </mat-grid-tile>
+  </ng-container>
+
+  <ng-container *ngIf="payments | async as payments">
+      <mat-grid-tile [colspan]="1" [rowspan]="payments.length * 2" class="border mat-tile">
+        <div class="container">
+          <app-payments [payments]="payments"></app-payments>
+        </div>
+      </mat-grid-tile>
+  </ng-container>
+
+</mat-grid-list>
+
+
 <button mat-raised-button color="primary" (click)="logout()">Logout</button>
 <button mat-raised-button color="primary" (click)="transaction()">Create transaction</button>
