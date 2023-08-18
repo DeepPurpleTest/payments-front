@@ -1,0 +1,10 @@
+.card-container {
+  width: 800px;
+  max-width: 800px;
+  margin: 7px;
+}
+
+.container {
+  display: flex;
+  flex-direction: column;
+}

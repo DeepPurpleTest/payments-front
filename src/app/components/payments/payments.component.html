@@ -1,11 +1,14 @@
-<div *ngIf="payments | async as payments">
-  <ng-container *ngFor="let payment of payments">
-    <div>
-      {{ 'Sender: ' + payment.sender }}
-      {{ 'Receiver: ' + payment.receiver }}
-      {{ 'Amount: ' + payment.amount }}
-      {{ 'Date: ' + payment.date }}
-      {{ 'Balance after transaction: ' + payment.currentCardBalance }}
-    </div>
-  </ng-container>
-</div>
+<ng-container *ngFor="let payment of payments">
+  <mat-card class="payment-container">
+    <mat-card-header>
+      <mat-card-title>{{ 'Date: ' + payment.date }}</mat-card-title>
+      <mat-card-subtitle>
+        {{ 'Sender: ' + payment.sender }}
+        {{ 'Receiver: ' + payment.receiver }}
+        {{ 'Amount: ' + payment.amount }}
+        {{ 'Balance after transaction: ' + payment.currentCardBalance }}
+      </mat-card-subtitle>
+    </mat-card-header>
+  </mat-card>
+</ng-container>
+
