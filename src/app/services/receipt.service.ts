@@ -11,7 +11,7 @@ export class ReceiptService {
     this.clientReceiptUrl = 'http://localhost:8080/client/receipt/';
   }
 
-  getReceipt(id: any): Observable<any> {
+  getReceipt(id: any): Observable<Blob> {
     const headers = new HttpHeaders({Authorization: 'Basic ' + btoa(this.authService.getPhoneNumber() + ':' + this.authService.getPassword())});
     return this.http.get(this.clientReceiptUrl + 'get/' + id,{headers, responseType:'blob'}); // binary data responseType:'blob'
   }
