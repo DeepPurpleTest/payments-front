@@ -66,7 +66,7 @@ export class PaymentDetailsComponent implements OnInit {
     this.receiptService.getReceipt(this.payment.id).subscribe({
       next: (data) => {
         const url = window.URL.createObjectURL(data); // create temporary url for pdf file like he is on server window.URL.createObjectURL(blob)
-
+        
         const link = document.createElement('a'); // create new reference element a
         link.href = url; // add rj link temporary url of pdf
         link.download = 'receipt.pdf'; // add name of saved pdf

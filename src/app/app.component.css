@@ -1,5 +1,6 @@
-.body {
-  height: 200%;
-  width: 200%;
-  overflow: hidden !important;
+html,
+body {
+  width: 100%;
+  margin: 0;
+  overflow: hidden;
 }

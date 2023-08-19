@@ -1,5 +1,5 @@
 <ng-container *ngFor="let payment of payments">
-  <mat-card class="payment-container">
+  <mat-card class="payment-container" (click)="paymentDetails(payment.id)">
     <mat-card-header>
       <mat-card-title>{{ 'Date: ' + payment.date }}</mat-card-title>
       <mat-card-subtitle>
