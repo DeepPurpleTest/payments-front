@@ -14,6 +14,7 @@ import {DateFormatterService} from "../../util/dateformatter/date.formatter.serv
 })
 export class PaymentDetailsComponent implements OnInit {
   public payment: Payment = {} as Payment;
+  url: string = '';
   id: string;
 
   constructor(private route: ActivatedRoute, public dialog: MatDialog, private paymentService: PaymentService, private receiptService: ReceiptService, private dateFormatterService: DateFormatterService) {
@@ -24,17 +25,15 @@ export class PaymentDetailsComponent implements OnInit {
 
   ngOnInit(): void {
     this.loadPayment();
+    this.loadReceipt();
     console.log(this.payment.date)
   }
 
   loadPayment() {
     this.paymentService.findOne(this.id).subscribe({
       next: (data: Payment) => {
-        console.log('DATA ', data)
         this.payment = data;
-        console.log('PAYMENT ', this.payment)
         this.payment.date = this.dateFormatterService.formatDate(data.date);
-        console.log(this.payment);
         console.log('success get payment');
       },
       error: (error) => {
@@ -43,18 +42,10 @@ export class PaymentDetailsComponent implements OnInit {
     });
   }
 
-  openDialog() {
-    this.receiptService.getReceipt(this.payment.id).subscribe({
+  loadReceipt() {
+    this.receiptService.getReceipt(this.id).subscribe({
       next: (data) => {
-        const blob: Blob = data as Blob;
-        const url = window.URL.createObjectURL(blob); // create temporary url for pdf file like he is on server window.URL.createObjectURL(blob)
-
-        this.dialog.open(DialogReceiptComponent, {
-          width: '90%',
-          data: {
-            url: url,
-          }
-        });
+        this.url = window.URL.createObjectURL(data); // create temporary url for pdf file like he is on server window.URL.createObjectURL(blob)
       },
       error: (error) => {
         console.error('Error:', error);
@@ -62,11 +53,19 @@ export class PaymentDetailsComponent implements OnInit {
     });
   }
 
+  openDialog() {
+    this.dialog.open(DialogReceiptComponent, {
+      width: '90%',
+      data: {
+        url: this.url,
+      }
+    });
+  }
+
   downloadPdf() {
     this.receiptService.getReceipt(this.payment.id).subscribe({
       next: (data) => {
-        const blob: Blob = data as Blob;
-        const url = window.URL.createObjectURL(blob); // create temporary url for pdf file like he is on server window.URL.createObjectURL(blob)
+        const url = window.URL.createObjectURL(data); // create temporary url for pdf file like he is on server window.URL.createObjectURL(blob)
 
         const link = document.createElement('a'); // create new reference element a
         link.href = url; // add rj link temporary url of pdf
