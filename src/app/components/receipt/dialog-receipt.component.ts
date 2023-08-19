@@ -12,7 +12,9 @@ export class DialogReceiptComponent {
   private pdfViewer!: NgxExtendedPdfViewerComponent;
   public url: string;
   constructor(@Inject(MAT_DIALOG_DATA) public data: any, public dialogRef: MatDialogRef<DialogReceiptComponent>) {
+    console.log('DATA IN CONSTRUCTOR ' + this.data.url);
     this.url = this.data.url;
+    console.log('URL INT CONSTRUCTOR ' + this.url)
     dialogRef.beforeClosed().subscribe((result) => {
       console.log('The dialog is about to be closed');
       this.pdfViewer.ngOnDestroy();

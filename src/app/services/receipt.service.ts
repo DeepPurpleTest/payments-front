@@ -13,6 +13,6 @@ export class ReceiptService {
 
   getReceipt(id: any): Observable<any> {
     const headers = new HttpHeaders({Authorization: 'Basic ' + btoa(this.authService.getPhoneNumber() + ':' + this.authService.getPassword())});
-    return this.http.get(this.clientReceiptUrl + 'get/' + id,{headers, responseType:'blob'}); // binary data responseType:'blob'
+    return this.http.get(this.clientReceiptUrl + 'get/' + id,{headers, observe:'response', responseType:'blob'}); // binary data responseType:'blob'
   }
 }

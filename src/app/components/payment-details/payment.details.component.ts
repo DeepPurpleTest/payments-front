@@ -46,9 +46,11 @@ export class PaymentDetailsComponent implements OnInit {
   openDialog() {
     this.receiptService.getReceipt(this.payment.id).subscribe({
       next: (data) => {
-        const blob: Blob = data as Blob;
+        const blob: Blob = data.body as Blob;
+        console.log('BLOB ' + blob);
+        console.log('HEADERS ' + data.headers);
         const url = window.URL.createObjectURL(blob); // create temporary url for pdf file like he is on server window.URL.createObjectURL(blob)
-
+        console.log('URL ' + url);
         this.dialog.open(DialogReceiptComponent, {
           width: '90%',
           data: {
@@ -65,7 +67,7 @@ export class PaymentDetailsComponent implements OnInit {
   downloadPdf() {
     this.receiptService.getReceipt(this.payment.id).subscribe({
       next: (data) => {
-        const blob: Blob = data as Blob;
+        const blob: Blob = data.body as Blob;
         const url = window.URL.createObjectURL(blob); // create temporary url for pdf file like he is on server window.URL.createObjectURL(blob)
 
         const link = document.createElement('a'); // create new reference element a
